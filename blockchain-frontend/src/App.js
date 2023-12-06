@@ -4,7 +4,7 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import CommunityHub from './components/CommunityHub';
 import Membership from './components/Membership';
-import services from './components/services';
+import Services from './components/Services';
 import JoinNow from './components/JoinNow';
 import contact from './components/contact';
 import Footer from './components/Footer';
@@ -19,7 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/About" element={<AboutUs/>} />
         <Route path="/membership" element={<Membership />} />
-        <Route path="/services" element={<services />} />
+        <Route path="/Services" element={<Services />} />
         <Route path="/community" element={<CommunityHub />} />
         <Route path="/contact" element={<contact />} />
         <Route path="/Login" element={<Login />} />

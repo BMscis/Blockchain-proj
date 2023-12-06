@@ -194,6 +194,29 @@
   font-size: 16px;
   line-height: 1.5;
 }
+/* components/Services.css */
+.services-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.services-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.services-container li {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+
 
 
 
