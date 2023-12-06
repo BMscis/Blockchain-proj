@@ -1,5 +1,5 @@
 import React from 'react';
-import about from './components/about';
+import AboutUs from './components/AboutUs';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import CommunityHub from './components/CommunityHub';
@@ -17,7 +17,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/about" element={<about />} />
+        <Route path="/About" element={<AboutUs/>} />
         <Route path="/membership" element={<Membership />} />
         <Route path="/services" element={<services />} />
         <Route path="/community" element={<CommunityHub />} />
