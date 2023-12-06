@@ -19,29 +19,16 @@ const Dashboard = () => {
           <li><Link to="/signup">Signup</Link></li>
         </ul>
       </nav>
-      <div className="feature-section">
-        <h2>ABC Features</h2>
-        <div className="feature-card">
-          <h3>Secure Transactions</h3>
-          <p>ABC ensures secure transactions to safeguard your financial activities.</p>
+      <div>
+       
+          <p>ABC ensures secure transactions to safeguard your financial activities.<span>njoy the convenience of automated record-keeping, reducing manual effort and errors.</span>ABC provides transparent financial reports, fostering trust and understanding among community members.</p>
         </div>
-        <div className="feature-card">
-          <h3>Automated Record-Keeping</h3>
-          <p>Enjoy the convenience of automated record-keeping, reducing manual effort and errors.</p>
+       
+         
         </div>
-        <div className="feature-card">
-          <h3>Transparent Community Reporting</h3>
-          <p>ABC provides transparent financial reports, fostering trust and understanding among community members.</p>
-        </div>
-      </div>
-    </div>
-  );
-
-      {/* Content section based on user's choice */}
-      {/* For simplicity, I'm rendering TransactionForm as default */}
-   {/*    <TransactionForm /> */}
-  
-  
+        
+     
+  );  
 };
 
 export default Dashboard;
