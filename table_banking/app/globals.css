@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  @apply leading-[normal] m-0;
+}
+*,
+::before,
+::after {
+  border-width: 0;
+}
+#WelcomeHeader {
+  width: calc(100vw -249.77px);
+}
+#home {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+#Member {
+  display: grid;
+  grid-template-columns: 20% 10% 70%;
+}
