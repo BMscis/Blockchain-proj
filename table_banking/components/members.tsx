@@ -8,7 +8,7 @@ export default function Members({}) {
     <section
       id="Members"
       className={`${
-        path === routes.group ? '' : 'invisible'
+        path === routes.groupID ? '' : 'invisible'
       } p-3 rounded-3xl bg-white box-border text-left text-9xl text-mediumvioletred font-raleway border-[1px] border-solid border-lightgray-200`}
     >
       <b className="">Members</b>

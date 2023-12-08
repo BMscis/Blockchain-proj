@@ -3,10 +3,21 @@ import { algodConfig } from '@/utils/ellipseAddress';
 import { DeflyWalletConnect } from '@blockshake/defly-connect';
 import { DaffiWalletConnect } from '@daffiwallet/connect';
 import { PeraWalletConnect } from '@perawallet/connect';
-import { PROVIDER_ID, ProvidersArray, WalletProvider, useInitializeProviders } from '@txnlab/use-wallet';
+import {
+  PROVIDER_ID,
+  ProvidersArray,
+  WalletProvider,
+  useInitializeProviders,
+} from '@txnlab/use-wallet';
 import algosdk from 'algosdk';
 import { SnackbarProvider } from 'notistack';
-import React, { createContext, useContext, useReducer, ReactNode, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  ReactNode,
+  useState,
+} from 'react';
 const providersArray: ProvidersArray = [
   { id: PROVIDER_ID.DEFLY, clientStatic: DeflyWalletConnect },
   { id: PROVIDER_ID.PERA, clientStatic: PeraWalletConnect },
@@ -21,7 +32,9 @@ interface WalletState {
   balance: number;
 }
 
-type WalletAction = { type: 'DEPOSIT'; amount: number } | { type: 'WITHDRAW'; amount: number };
+type WalletAction =
+  | { type: 'DEPOSIT'; amount: number }
+  | { type: 'WITHDRAW'; amount: number };
 
 interface WalletContextProps {
   state: WalletState;
@@ -39,7 +52,10 @@ const initialWalletState: WalletState = {
 const WalletContext = createContext<WalletContextProps | undefined>(undefined);
 
 // Define the reducer function
-const walletReducer = (state: WalletState, action: WalletAction): WalletState => {
+const walletReducer = (
+  state: WalletState,
+  action: WalletAction
+): WalletState => {
   switch (action.type) {
     case 'DEPOSIT':
       return { ...state, balance: state.balance + action.amount };
@@ -87,7 +103,11 @@ export const LocalWallet: React.FC<LocalWalletProps> = ({ children }) => {
   return (
     <SnackbarProvider maxSnack={3}>
       <WalletProvider value={walletProviders}>
-        <WalletContext.Provider value={{ state, dispatch, toggleWalletModal, openWalletModal }}>{children}</WalletContext.Provider>
+        <WalletContext.Provider
+          value={{ state, dispatch, toggleWalletModal, openWalletModal }}
+        >
+          {children}
+        </WalletContext.Provider>
       </WalletProvider>
     </SnackbarProvider>
   );

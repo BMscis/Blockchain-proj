@@ -6,6 +6,7 @@ import SideBar from '@/components/sidebar';
 import Header from '@/components/header';
 import ConnectWallet from '@/components/account/connectWallet';
 import RightSideBar from '@/components/right-sidebar';
+import { GroupProvider } from './group/_context';
 
 const inter = Inter({ subsets: ['latin'] });
 const domain = 'http://localhost:3000/';
@@ -48,7 +49,11 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -57,13 +62,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             id="home"
             className="flex flex-row relative bg-snow w-full h-screen overflow-hidden text-left text-[17.83px] text-black font-raleway"
           >
-            <SideBar />
-            <div className="flex flex-col mx-8">
-              <Header />
-              {children}
-            </div>
-            <RightSideBar />
-            <ConnectWallet />
+            <GroupProvider>
+              <SideBar />
+              <div className="flex flex-col mx-8">
+                <Header />
+                {children}
+              </div>
+              <RightSideBar />
+              <ConnectWallet />
+            </GroupProvider>
           </div>
         </LocalWallet>
       </body>

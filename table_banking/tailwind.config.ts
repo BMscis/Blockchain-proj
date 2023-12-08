@@ -1,10 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 import type { Config } from 'tailwindcss';
 const config: Config = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
   theme: {
     extend: {
       colors: {
+        blueviolet: '#7054ff',
         snow: '#fff5f4',
         white: '#fff',
         black: '#000',
@@ -13,7 +18,6 @@ const config: Config = {
           '200': '#d0d0d0',
         },
         mediumvioletred: '#d4469b',
-        'button-color': '#7054ff',
         gray: '#858585',
         limegreen: '#08a718',
         lavenderblush: '#ffddf1',

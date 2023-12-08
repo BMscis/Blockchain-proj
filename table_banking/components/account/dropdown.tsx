@@ -1,17 +1,37 @@
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import Account from "./account";
-import { useWallet } from "@txnlab/use-wallet";
+import { Menu, Transition } from '@headlessui/react';
+import { Fragment, useEffect, useRef, useState } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import Account from './account';
+import { useWallet } from '@txnlab/use-wallet';
 
 export function OpenWallet() {
+  const [userName, setUserName] = useState('Jane');
+  const { activeAddress } = useWallet();
+  const [image, setImage] = useState('/frame-38@2x.png');
+  useEffect(() => {
+    if (!activeAddress) return;
+    if (
+      activeAddress !==
+      'SJQAHBFSNUDR2JCVPGBXPSBK2F2ZZ4VTDSJ3HE2L7O4HN46WD6KQFNGX3A'
+    ) {
+      setUserName('Asha');
+      setImage('/frame-591@2x.png');
+    }
+  }, [activeAddress]);
   return (
     <div className="flex flex-row items-center justify-start gap-[9px] text-[28.38px] font-inter">
       <div className="flex flex-row items-center justify-start gap-[16px]">
-        <div className="relative">Jane</div>
-        <img className="relative rounded-81xl w-12 h-12 overflow-hidden shrink-0 object-cover" alt="" src="/frame-38@2x.png" />
+        <div className="relative">{userName}</div>
+        <img
+          className="relative rounded-81xl w-12 h-12 overflow-hidden shrink-0 object-cover"
+          alt=""
+          src={image}
+        />
       </div>
-      <button className="cursor-pointer [border:none] p-0 bg-[transparent] relative w-6 h-6 overflow-hidden shrink-0" id="dropdown">
+      <button
+        className="cursor-pointer [border:none] p-0 bg-[transparent] relative w-6 h-6 overflow-hidden shrink-0"
+        id="dropdown"
+      >
         <img
           className="absolute h-[33.33%] w-[58.33%] top-[33.33%] right-[20.83%] bottom-[33.33%] left-[20.83%] max-w-full overflow-hidden max-h-full"
           alt=""
@@ -30,7 +50,10 @@ export default function AccountDropDown() {
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
             <OpenWallet />
-            <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100" aria-hidden="true" />
+            <ChevronDownIcon
+              className="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100"
+              aria-hidden="true"
+            />
           </Menu.Button>
         </div>
         <Transition
@@ -52,24 +75,29 @@ export default function AccountDropDown() {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
+                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     onClick={() => {
                       if (providers) {
-                        const activeProvider = providers.find((p) => p.isActive);
+                        const activeProvider = providers.find(
+                          (p) => p.isActive
+                        );
                         if (activeProvider) {
                           activeProvider.disconnect();
                         } else {
                           // Required for logout/cleanup of inactive providers
                           // For instance, when you login to localnet wallet and switch network
                           // to testnet/mainnet or vice verse.
-                          localStorage.removeItem("txnlab-use-wallet");
+                          localStorage.removeItem('txnlab-use-wallet');
                           window.location.reload();
                         }
                       }
                     }}
                   >
-                    <Logout className="mr-2 h-5 w-5 text-violet-400" aria-hidden="true" />
+                    <Logout
+                      className="mr-2 h-5 w-5 text-violet-400"
+                      aria-hidden="true"
+                    />
                     Logout
                   </button>
                 )}
