@@ -1,8 +1,11 @@
 export default function Header() {
   return (
-    <div id="WelcomeHeader" className="m-8 flex flex-row items-start justify-start text-[48px]">
+    <div
+      id="WelcomeHeader"
+      className="m-8 flex flex-row items-start justify-start text-[48px]"
+    >
       <h1 className="m-0 relative text-inherit font-inherit font-sans font-thin">
-        <span>{`Welcome `}</span>
+        <span>{`Welcome To Peer Purse `}</span>
         {/* <b>Jane Ashley!</b> */}
       </h1>
     </div>
