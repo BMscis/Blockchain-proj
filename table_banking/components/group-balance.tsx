@@ -77,10 +77,8 @@ function calculateLoanLimit(
   return Math.max(0, loanLimit / 1000000);
 }
 export default function GroupBalance({
-  state,
   appID,
 }: {
-  state: MemberStates;
   appID: string;
 }) {
   const [totalGroupSavings, setTotalGroupSavings] = useState(0);
@@ -88,17 +86,22 @@ export default function GroupBalance({
   const [loanDue, setLoanDue] = useState(0);
   const [userSavings, setUserSavings] = useState(0);
   const { activeAddress } = useWallet();
-  const { setMembers, setAppID } = useGroup();
+  const { setMembers, setAppID,getAppFromChain,memberState } = useGroup();
   const router = useRouter();
+  useEffect(()=>{
+    if(!appID)return
+    getAppFromChain(appID)
+  },[])
   useEffect(() => {
     if (!activeAddress) return;
-    setMembers(state);
+    if(!memberState)return
+    setMembers(memberState);
     setAppID(parseInt(appID));
-    setTotalGroupSavings(calculateTotalSavings(state));
-    setLoanDue(calculateUserLoan(state, activeAddress));
-    setUserSavings(calculateUserSavings(state, activeAddress));
-    setLoanLimit(calculateLoanLimit(state, activeAddress, totalGroupSavings));
-  }, [activeAddress]);
+    setTotalGroupSavings(calculateTotalSavings(memberState));
+    setLoanDue(calculateUserLoan(memberState, activeAddress));
+    setUserSavings(calculateUserSavings(memberState, activeAddress));
+    setLoanLimit(calculateLoanLimit(memberState, activeAddress, totalGroupSavings));
+  }, [activeAddress,memberState]);
   return (
     <div
       id="GroupBalance"

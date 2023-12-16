@@ -83,20 +83,16 @@ export const createNewGroup = async (
       });
   };
 
-  console.log('Creating client');
   const banking_Client = await createGroup();
 
   if (!banking_Client) {
-    console.log({ banking_Client });
     snack(`Something went wrong: `, { variant: 'error' });
     throw new Error('Missing banking client');
   }
 
-  console.log('Creating bare client: ', banking_Client);
   const resp = await createBare(banking_Client);
 
   if (!resp) {
-    console.log({ resp });
     snack(`Something went wrong: `, { variant: 'error' });
     throw new Error('Missing createBare response');
   }
@@ -132,10 +128,8 @@ export const addMembers = async (
     const setMembers = await client.setMembers(setMemberParams, txnParams);
 
     params.snack('Successfully added members: ', { variant: 'success' });
-    console.log({ setMembers });
     return true;
   } catch (error) {
-    console.log({ error });
     return false;
   }
 };

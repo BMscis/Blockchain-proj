@@ -1,13 +1,15 @@
 'use client';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { MemberStates } from '../service/getAppFromBlockchain';
+import getAppFromBlockChain, { MemberStates } from '../service/getAppFromBlockchain';
 
 // Define the shape of the context value
 interface GroupContextValue {
   members: MemberStates | undefined;
+  memberState: MemberStates | undefined;
   setMembers: React.Dispatch<React.SetStateAction<MemberStates | any>>;
   appID: number;
   setAppID: React.Dispatch<React.SetStateAction<number>>;
+  getAppFromChain: (id: string) => Promise<void>
 }
 
 // Group the context
@@ -21,15 +23,24 @@ interface GroupProviderProps {
 export const GroupProvider: React.FC<GroupProviderProps> = ({ children }) => {
   const [members, setMembers] = useState<MemberStates | undefined>();
   const [appID, setAppID] = useState<number>(0);
+  const [memberState,setMemberState] = useState<MemberStates>()
+
+  const getAppFromChain = async(id:string) => {
+    const members: MemberStates = JSON.parse(
+      await getAppFromBlockChain(parseInt(id))
+    );
+    setMemberState(members)
+  }
 
   // Define the context value
   const contextValue: GroupContextValue = {
     members,
     setMembers,
     setAppID,
-    appID,
+    appID,memberState,
+    getAppFromChain
   };
-
+  
   // Provide the context value to the components
   return (
     <GroupContext.Provider value={contextValue}>

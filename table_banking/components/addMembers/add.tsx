@@ -11,7 +11,6 @@ export default function AddMembers() {
   const { group } = useCreate();
   const router = useRouter();
   const onSubmit = async (e: any) => {
-    console.log({ group });
     if (!activeAddress) {
       enqueueSnackbar('Please connect wallet first', {
         variant: 'warning',
@@ -36,7 +35,6 @@ export default function AddMembers() {
       transactionSigner,
       snack: enqueueSnackbar,
     });
-    console.log({ response });
     router.push(`${routes.groupID}?id=${group.appId}`);
   };
   return (

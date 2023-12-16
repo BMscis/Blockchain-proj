@@ -48,7 +48,6 @@ const getAppFromBlockChain = async (appID: number): Promise<string> => {
     .lookupApplications(appID)
     .includeAll(true)
     .do()) as ApplicationResponse;
-  console.log(res);
   if (!res) {
     throw new Error(`missing application: ${appID}`);
   }
@@ -57,7 +56,6 @@ const getAppFromBlockChain = async (appID: number): Promise<string> => {
 
   const globalState = params['global-state'] as GlobalState[];
 
-  console.log({ globalState });
 
   if (!globalState) {
     throw new Error(`missing global state: ${appID}`);
@@ -93,7 +91,6 @@ const decodeGlobalState = (globalState: GlobalState[]): MemberStates => {
   try {
     globalState.map((state) => {
       const stateKey = decodeBytes(state.key);
-      console.log({ stateKey });
       switch (stateKey) {
         case GlobalStateSchema.governor:
           const publicKey = decodeBytes(state.value.bytes);
@@ -145,7 +142,6 @@ const decodeGlobalState = (globalState: GlobalState[]): MemberStates => {
           break;
 
         default:
-          console.log('DEFAULT: ', stateKey);
           break;
       }
     });
@@ -163,19 +159,12 @@ export const decodeAddress = (s: string): string => {
   const t = ABIAddressType.from('address');
   const bufferString = Buffer.from(s, 'base64');
   const decoder = t.decode(bufferString).valueOf() as string;
-  console.log({ decoder });
   return decoder;
 };
 export const decodeMember = (s: string) => {
-  console.log({ s });
   const memberTupleType = ABITupleType.from(
     '(address,string,string,string,string,string)'
   );
-  //   console.log({ memberTupleType });
-  //   const bufferString = Buffer.from(s, 'base64');
-  //   const decoder = memberTupleType.decode(bufferString).valueOf() as string[];
-
-  //   console.log({ decoder });
   return {
     address: 'ZZRBBNIEN6IHZNYN2455O36X2ZSQEJF6P5UCJAEZ53UCP5R4NW57DRTZT4',
     savings: 0,

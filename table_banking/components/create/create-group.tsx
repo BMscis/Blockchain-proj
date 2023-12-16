@@ -24,7 +24,6 @@ export default function CreateGroup() {
     });
     setGroup(response);
     router.push(routes.add);
-    console.log({ response });
   };
   return <GroupForm onSubmit={onSubmit} />;
 }

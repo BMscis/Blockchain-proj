@@ -13,7 +13,6 @@ export default function PassCode() {
     setIsOpen(true);
   }
   const onSubmit = async (e: any) => {
-    console.log({ VALUE: appID });
   };
   return (
     <>
